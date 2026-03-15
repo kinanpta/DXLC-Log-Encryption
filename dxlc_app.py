@@ -28,9 +28,7 @@ def decrypt_dxlc(ciphertext, key): #ciphertext yang mau di dekripsi, kunci untuk
     return plaintext #mengembalikan hasil dekripsi akhir
 
 def main():
-
     while True:
-
         print("\n=== DXLC Log Encryption App ===")
         print("1. Encrypt Log")
         print("2. Decrypt Log")
@@ -39,21 +37,17 @@ def main():
         choice = input("Choose menu: ")
 
         if choice == "1":
-
             log = input("Input log: ")
             key = input("Input key: ")
-
             encrypted = encrypt_dxlc(log, key)
-
-            print("Ciphertext:", encrypted)
+            encrypted_hex = encrypted.encode().hex()
+            print("Ciphertext (hex):", encrypted_hex)
 
         elif choice == "2":
-
-            cipher = input("Ciphertext: ")
+            cipher_hex = input("Ciphertext (hex): ")
             key = input("Input key: ")
-
+            cipher = bytes.fromhex(cipher_hex).decode()
             decrypted = decrypt_dxlc(cipher, key)
-
             print("Plaintext:", decrypted)
 
         elif choice == "3":
@@ -61,7 +55,5 @@ def main():
 
         else:
             print("Invalid menu")
-
-
 if __name__ == "__main__":
     main()
